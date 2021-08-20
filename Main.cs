@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -12,21 +13,21 @@ using System.Windows.Forms;
 
 namespace MonitorDeProcesos
 {    
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
         Timer Timer = new Timer();
         BindingList<Proceso> Procesos = new BindingList<Proceso>();
 
-        public Form1()
+        public Main()
         {
             InitializeComponent();
+            Timer.Interval = 2000;
+            Timer.Tick += Timer_Tick;
         }
 
         protected override void OnLoad(EventArgs e)
         {            
-            gridControl1.DataSource = Procesos;
-            Timer.Interval = 1000;
-            Timer.Tick += Timer_Tick;
+            gridControl1.DataSource = Procesos;            
             Timer.Start();
             List<Process> prs = new List<Process>(Process.GetProcesses());
             prs.ForEach(p => Procesos.Add(new Proceso(p)));
@@ -54,50 +55,22 @@ namespace MonitorDeProcesos
                 else Procesos.Add(new Proceso(pr));                              
             }
             gridView1.RefreshData();
-        }        
-    }
-
-    public class Proceso
-    {
-        public int Id { get; set; }
-        public string ProcessName { get; set; }
-        public TimeSpan TotalProcessorTime { get; set; }
-        public int Hilos { get; set; }
-        public DateTime StartTime { get; set; }
-        public string WorkingSet64 { get; set; }
-
-        public Proceso() { }
-
-        public Proceso(Process p) 
-        {
-            Id = p.Id;            
-            ProcessName = p.ProcessName;
-            try { TotalProcessorTime = p.TotalProcessorTime; } catch (Exception) { }
-            Hilos = p.Threads.Count;
-            try { StartTime = p.StartTime; } catch (Exception) { }
-            WorkingSet64 = ToSize(p.WorkingSet64, SizeUnits.MB);            
         }
 
-        public void Actualizar(Process p)
+        private void BtnFinalizar_Click(object sender, EventArgs e)
         {
-            Id = p.Id;
-            ProcessName = p.ProcessName;
-            try { TotalProcessorTime = p.TotalProcessorTime; } catch (Exception) { }
-            Hilos = p.Threads.Count;
-            try { StartTime = p.StartTime; } catch (Exception) { }
-            WorkingSet64 = ToSize(p.WorkingSet64, SizeUnits.MB);
-        }
-
-        public enum SizeUnits
-        {
-            Byte, KB, MB, GB, TB, PB, EB, ZB, YB
-        }
-
-        public string ToSize(long value, SizeUnits unit)
-        {
-            return (value / (double)Math.Pow(1000, (long)unit)).ToString("0.00");
+            Proceso p = (Proceso)gridView1.GetRow(gridView1.FocusedRowHandle);
+            if (p == null) return;
+            if (XtraMessageBox.Show($"Desea finalizar el proceso [{p.ProcessName}]?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;           
+            try
+            {                
+                Process.GetProcessById(p.Id)?.Kill();
+            }
+            catch(Exception ex)
+            {
+                XtraMessageBox.Show($"No se pudo finalizar el proceso.{Environment.NewLine}{ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }                       
         }
     }
-
 
 }

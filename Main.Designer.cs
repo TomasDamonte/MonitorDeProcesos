@@ -1,7 +1,7 @@
 ﻿
 namespace MonitorDeProcesos
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
@@ -39,6 +39,7 @@ namespace MonitorDeProcesos
             this.colStartTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colWorkingSet64 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.BtnFinalizar = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
@@ -116,13 +117,24 @@ namespace MonitorDeProcesos
             this.colWorkingSet64.Visible = true;
             this.colWorkingSet64.VisibleIndex = 5;
             // 
-            // Form1
+            // BtnFinalizar
+            // 
+            this.BtnFinalizar.ImageOptions.Image = global::MonitorDeProcesos.Properties.Resources.cancel_32x32;
+            this.BtnFinalizar.Location = new System.Drawing.Point(658, 444);
+            this.BtnFinalizar.Name = "BtnFinalizar";
+            this.BtnFinalizar.Size = new System.Drawing.Size(130, 39);
+            this.BtnFinalizar.TabIndex = 1;
+            this.BtnFinalizar.Text = "Terminar Proceso";
+            this.BtnFinalizar.Click += new System.EventHandler(this.BtnFinalizar_Click);
+            // 
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 494);
+            this.Controls.Add(this.BtnFinalizar);
             this.Controls.Add(this.gridControl1);
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Monitor de procesos";
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
@@ -142,6 +154,7 @@ namespace MonitorDeProcesos
         private DevExpress.XtraGrid.Columns.GridColumn colStartTime;
         private DevExpress.XtraGrid.Columns.GridColumn colWorkingSet64;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        private DevExpress.XtraEditors.SimpleButton BtnFinalizar;
     }
 }
 
