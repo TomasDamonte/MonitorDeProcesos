@@ -38,8 +38,10 @@ namespace MonitorDeProcesos
             this.colHilos = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colStartTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colWorkingSet64 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPrioridad = new DevExpress.XtraGrid.Columns.GridColumn();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.BtnFinalizar = new DevExpress.XtraEditors.SimpleButton();
+            this.colUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
@@ -50,7 +52,7 @@ namespace MonitorDeProcesos
             this.gridControl1.Location = new System.Drawing.Point(12, 12);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(776, 426);
+            this.gridControl1.Size = new System.Drawing.Size(984, 426);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -63,7 +65,9 @@ namespace MonitorDeProcesos
             this.colTotalProcessorTime,
             this.colHilos,
             this.colStartTime,
-            this.colWorkingSet64});
+            this.colWorkingSet64,
+            this.colPrioridad,
+            this.colUsuario});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -86,7 +90,7 @@ namespace MonitorDeProcesos
             // 
             // colTotalProcessorTime
             // 
-            this.colTotalProcessorTime.Caption = "TotalProcessorTime";
+            this.colTotalProcessorTime.Caption = "TiempoTotalProcesador";
             this.colTotalProcessorTime.FieldName = "TotalProcessorTime";
             this.colTotalProcessorTime.Name = "colTotalProcessorTime";
             this.colTotalProcessorTime.Visible = true;
@@ -111,27 +115,43 @@ namespace MonitorDeProcesos
             // 
             // colWorkingSet64
             // 
-            this.colWorkingSet64.Caption = "WorkingSet64 (MB)";
+            this.colWorkingSet64.Caption = "Uso Memoria (MB)";
             this.colWorkingSet64.FieldName = "WorkingSet64";
             this.colWorkingSet64.Name = "colWorkingSet64";
             this.colWorkingSet64.Visible = true;
             this.colWorkingSet64.VisibleIndex = 5;
             // 
+            // colPrioridad
+            // 
+            this.colPrioridad.Caption = "Prioridad";
+            this.colPrioridad.FieldName = "Prioridad";
+            this.colPrioridad.Name = "colPrioridad";
+            this.colPrioridad.Visible = true;
+            this.colPrioridad.VisibleIndex = 6;
+            // 
             // BtnFinalizar
             // 
             this.BtnFinalizar.ImageOptions.Image = global::MonitorDeProcesos.Properties.Resources.cancel_32x32;
-            this.BtnFinalizar.Location = new System.Drawing.Point(658, 444);
+            this.BtnFinalizar.Location = new System.Drawing.Point(866, 444);
             this.BtnFinalizar.Name = "BtnFinalizar";
             this.BtnFinalizar.Size = new System.Drawing.Size(130, 39);
             this.BtnFinalizar.TabIndex = 1;
             this.BtnFinalizar.Text = "Terminar Proceso";
             this.BtnFinalizar.Click += new System.EventHandler(this.BtnFinalizar_Click);
             // 
+            // colUsuario
+            // 
+            this.colUsuario.Caption = "Usuario";
+            this.colUsuario.FieldName = "Usuario";
+            this.colUsuario.Name = "colUsuario";
+            this.colUsuario.Visible = true;
+            this.colUsuario.VisibleIndex = 7;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 494);
+            this.ClientSize = new System.Drawing.Size(1008, 494);
             this.Controls.Add(this.BtnFinalizar);
             this.Controls.Add(this.gridControl1);
             this.Name = "Main";
@@ -155,6 +175,8 @@ namespace MonitorDeProcesos
         private DevExpress.XtraGrid.Columns.GridColumn colWorkingSet64;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
         private DevExpress.XtraEditors.SimpleButton BtnFinalizar;
+        private DevExpress.XtraGrid.Columns.GridColumn colPrioridad;
+        private DevExpress.XtraGrid.Columns.GridColumn colUsuario;
     }
 }
 

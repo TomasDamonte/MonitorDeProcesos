@@ -38,11 +38,13 @@ namespace MonitorDeProcesos
         {            
             List<Process> prs = new List<Process>(Process.GetProcesses());
 
+            //guardo los ids de los procesos a borrar
             List<int> idsBorrar = new List<int>();
             foreach (Proceso pro in Procesos)
             {
                 if (!prs.Any(p => p.Id == pro.Id)) idsBorrar.Add(pro.Id);
             }
+            //borro los procesos
             for(int i = 0; i < idsBorrar.Count; i++)
             {
                 Procesos.Remove(Procesos.First(p => p.Id == idsBorrar.ElementAt(i)));
@@ -51,7 +53,9 @@ namespace MonitorDeProcesos
             foreach(Process pr in prs)
             {
                 Proceso actual = Procesos.FirstOrDefault(p => p.Id == pr.Id);
-                if(actual != null) actual.Actualizar(pr);                
+                //actualizo proceso
+                if (actual != null) actual.Actualizar(pr);
+                //agrego proceso
                 else Procesos.Add(new Proceso(pr));                              
             }
             gridView1.RefreshData();
@@ -61,7 +65,7 @@ namespace MonitorDeProcesos
         {
             Proceso p = (Proceso)gridView1.GetRow(gridView1.FocusedRowHandle);
             if (p == null) return;
-            if (XtraMessageBox.Show($"Desea finalizar el proceso [{p.ProcessName}]?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;           
+            if (XtraMessageBox.Show($"Desea finalizar el proceso {p.ProcessName}?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;           
             try
             {                
                 Process.GetProcessById(p.Id)?.Kill();
