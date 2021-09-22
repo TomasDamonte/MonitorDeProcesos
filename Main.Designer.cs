@@ -39,9 +39,9 @@ namespace MonitorDeProcesos
             this.colStartTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colWorkingSet64 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrioridad = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.BtnFinalizar = new DevExpress.XtraEditors.SimpleButton();
-            this.colUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
@@ -79,6 +79,7 @@ namespace MonitorDeProcesos
             this.colId.Name = "colId";
             this.colId.Visible = true;
             this.colId.VisibleIndex = 0;
+            this.colId.Width = 50;
             // 
             // colNombre
             // 
@@ -87,14 +88,16 @@ namespace MonitorDeProcesos
             this.colNombre.Name = "colNombre";
             this.colNombre.Visible = true;
             this.colNombre.VisibleIndex = 1;
+            this.colNombre.Width = 124;
             // 
             // colTotalProcessorTime
             // 
-            this.colTotalProcessorTime.Caption = "TiempoTotalProcesador";
+            this.colTotalProcessorTime.Caption = "Tiempo Procesador";
             this.colTotalProcessorTime.FieldName = "TotalProcessorTime";
             this.colTotalProcessorTime.Name = "colTotalProcessorTime";
             this.colTotalProcessorTime.Visible = true;
             this.colTotalProcessorTime.VisibleIndex = 2;
+            this.colTotalProcessorTime.Width = 124;
             // 
             // colHilos
             // 
@@ -103,15 +106,17 @@ namespace MonitorDeProcesos
             this.colHilos.Name = "colHilos";
             this.colHilos.Visible = true;
             this.colHilos.VisibleIndex = 3;
+            this.colHilos.Width = 40;
             // 
             // colStartTime
             // 
-            this.colStartTime.Caption = "StartTime";
+            this.colStartTime.Caption = "Fecha Inicio";
             this.colStartTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colStartTime.FieldName = "StartTime";
             this.colStartTime.Name = "colStartTime";
             this.colStartTime.Visible = true;
             this.colStartTime.VisibleIndex = 4;
+            this.colStartTime.Width = 124;
             // 
             // colWorkingSet64
             // 
@@ -120,6 +125,7 @@ namespace MonitorDeProcesos
             this.colWorkingSet64.Name = "colWorkingSet64";
             this.colWorkingSet64.Visible = true;
             this.colWorkingSet64.VisibleIndex = 5;
+            this.colWorkingSet64.Width = 90;
             // 
             // colPrioridad
             // 
@@ -128,6 +134,16 @@ namespace MonitorDeProcesos
             this.colPrioridad.Name = "colPrioridad";
             this.colPrioridad.Visible = true;
             this.colPrioridad.VisibleIndex = 6;
+            this.colPrioridad.Width = 90;
+            // 
+            // colUsuario
+            // 
+            this.colUsuario.Caption = "Usuario";
+            this.colUsuario.FieldName = "Usuario";
+            this.colUsuario.Name = "colUsuario";
+            this.colUsuario.Visible = true;
+            this.colUsuario.VisibleIndex = 7;
+            this.colUsuario.Width = 136;
             // 
             // BtnFinalizar
             // 
@@ -138,14 +154,6 @@ namespace MonitorDeProcesos
             this.BtnFinalizar.TabIndex = 1;
             this.BtnFinalizar.Text = "Terminar Proceso";
             this.BtnFinalizar.Click += new System.EventHandler(this.BtnFinalizar_Click);
-            // 
-            // colUsuario
-            // 
-            this.colUsuario.Caption = "Usuario";
-            this.colUsuario.FieldName = "Usuario";
-            this.colUsuario.Name = "colUsuario";
-            this.colUsuario.Visible = true;
-            this.colUsuario.VisibleIndex = 7;
             // 
             // Main
             // 

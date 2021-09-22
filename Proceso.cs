@@ -32,12 +32,9 @@ namespace MonitorDeProcesos
         }
 
         public void Actualizar(Process p)
-        {
-            Id = p.Id;
-            ProcessName = p.ProcessName;
+        {            
             try { TotalProcessorTime = p.TotalProcessorTime; } catch (Exception) { }
-            Hilos = p.Threads.Count;
-            try { StartTime = p.StartTime; } catch (Exception) { }
+            Hilos = p.Threads.Count;            
             WorkingSet64 = ToSize(p.WorkingSet64, SizeUnits.MB);
             try { Prioridad = p.PriorityClass.ToString(); } catch (Exception) { }
         }
