@@ -47,7 +47,7 @@ namespace MonitorDeProcesos
             //borro los procesos
             for(int i = 0; i < idsBorrar.Count; i++)
             {
-                Procesos.Remove(Procesos.First(p => p.Id == idsBorrar.ElementAt(i)));
+                Procesos.Remove(Procesos.First(p => p.Id == idsBorrar[i]));
             }
 
             foreach(Process pr in prs)

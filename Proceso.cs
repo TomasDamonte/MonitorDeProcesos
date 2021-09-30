@@ -27,7 +27,7 @@ namespace MonitorDeProcesos
             Hilos = p.Threads.Count;
             try { StartTime = p.StartTime; } catch (Exception) { }
             WorkingSet64 = ToSize(p.WorkingSet64, SizeUnits.MB);
-            try { Prioridad = p.PriorityClass.ToString(); } catch (Exception) { }
+            try { Prioridad = p.PriorityClass.ToString(); } catch (Exception) { Prioridad = "Normal"; }
             SetUser();
         }
 
@@ -36,20 +36,18 @@ namespace MonitorDeProcesos
             try { TotalProcessorTime = p.TotalProcessorTime; } catch (Exception) { }
             Hilos = p.Threads.Count;            
             WorkingSet64 = ToSize(p.WorkingSet64, SizeUnits.MB);
-            try { Prioridad = p.PriorityClass.ToString(); } catch (Exception) { }
         }
 
-        public double ToSize(long value, SizeUnits unit)
+        private double ToSize(long value, SizeUnits unit)
         {
             return Math.Round(value/(double)Math.Pow(1000, (long)unit),2);
         }
 
-        void SetUser()
+        private void SetUser()
         {
             string query = "Select * From Win32_Process Where ProcessID = " + Id;
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
             ManagementObjectCollection processList = searcher.Get();
-
             foreach (ManagementObject obj in processList)
             {
                 string[] argList = new string[] { string.Empty, string.Empty };
@@ -64,11 +62,10 @@ namespace MonitorDeProcesos
             Usuario = "NO OWNER";
         }
 
-    }
-
-    public enum SizeUnits
-    {
-        Byte, KB, MB, GB, TB, PB, EB, ZB, YB
-    }
+        private enum SizeUnits
+        {
+            Byte, KB, MB, GB, TB, PB, EB, ZB, YB
+        }
+    } 
 
 }
