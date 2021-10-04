@@ -71,6 +71,7 @@ namespace MonitorDeProcesos
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsView.ShowFooter = true;
             // 
             // colId
             // 
@@ -86,6 +87,8 @@ namespace MonitorDeProcesos
             this.colNombre.Caption = "Nombre";
             this.colNombre.FieldName = "ProcessName";
             this.colNombre.Name = "colNombre";
+            this.colNombre.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "ProcessName", "Procesos: {0}")});
             this.colNombre.Visible = true;
             this.colNombre.VisibleIndex = 1;
             this.colNombre.Width = 124;
@@ -123,6 +126,8 @@ namespace MonitorDeProcesos
             this.colWorkingSet64.Caption = "Uso Memoria (MB)";
             this.colWorkingSet64.FieldName = "WorkingSet64";
             this.colWorkingSet64.Name = "colWorkingSet64";
+            this.colWorkingSet64.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "WorkingSet64", "Total: {0:0.##} MB")});
             this.colWorkingSet64.Visible = true;
             this.colWorkingSet64.VisibleIndex = 5;
             this.colWorkingSet64.Width = 90;
